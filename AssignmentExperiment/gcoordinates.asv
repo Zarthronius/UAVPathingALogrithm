@@ -20,15 +20,15 @@ x = result(:,2);  %x coords
 y = result(:,3);  %y coords
 
 for i = 1:size(result,1)
+    size(result,1)
     if result(i,1) == 10
-        row = i;
+        
     end
 end
 
-result(row+1:end, :) = [ ]
-
 x2 = result(:,2);
 y2 = result(:,3);
+
 
 format compact
 scatter(x,y);
