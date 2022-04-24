@@ -85,7 +85,7 @@ else
     fprintf("BEST ANSWER ONLY! (EPOC:%d)\n",experiment.bestEpoc);
 
      
-    %% removes excess nodes after path and gets coordinates for maping
+    %% removes excess nodes
     genelength = length(experiment.bestInd.gene);
     result = zeros(genelength,3);
     for i = 1:genelength
