@@ -7,11 +7,15 @@
 clc
 clear
 main
-result = zeros(24,3);
+
+genelength = length(experiment.bestInd.gene);
+result = zeros(genelength,3);
 %row = experiment.bestInd.gene(1,1);
 %result(1,:) = GADATA(row,:);
 
-for i = 1:24
+
+
+for i = 1:genelength
     row = experiment.bestInd.gene(1,i); %value of 1st col in GADATA
     result(i,:) = GADATA(row,:);
 end
@@ -19,13 +23,13 @@ end
 x = result(:,2);  %x coords
 y = result(:,3);  %y coords
 
-for i = 1:size(result,1)
-    if result(i,1) == 10
-        row = i;
-    end
-end
-
-result(row+1:end, :) = [ ]
+ for i = 1:size(result,1)
+     if result(i,1) == 10
+         row = i;
+     end
+ end
+ 
+ result(row+1:end, :) = [ ]  % Deletes all rows after end node
 
 x2 = result(:,2);
 y2 = result(:,3);
