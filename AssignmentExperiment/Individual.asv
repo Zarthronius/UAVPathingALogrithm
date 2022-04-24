@@ -24,11 +24,13 @@ classdef Individual < handle
             if nargin ~= 0 
                 dist = 0;                             % to be applied
                 
-                for i = 1:size(obj.gene,2)-1
-                    dist = dist + distance(data,obj.gene(i),obj.gene(i+1));
+                for i = 1:size(obj.gene,2)
                     if obj.gene(i) == 10
                         break
                     end
+                    if i < size(obj.gene,2)
+                    dist = dist + distance(data,obj.gene(i),obj.gene(i+1));
+                    break
                 end
                 
                 obj.fitness = dist;
