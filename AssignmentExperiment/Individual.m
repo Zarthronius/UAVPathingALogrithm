@@ -36,7 +36,7 @@ classdef Individual < handle
                 obj.valid = 1;
                 obj.visited = 0;
                 dist = 0;
-                maxDist = 500; %breaks if too low?                             % to be applied
+                maxDist = 50; %maximum distance path can be             % to be applied
                 
                 newdata = [gastart; data];
                 newgene = [gastart(1,1) obj.gene];
@@ -48,19 +48,19 @@ classdef Individual < handle
                     obj.visited = obj.visited + 1;
                     dist = dist + distance(newdata,newgene(i),newgene(i+1));
                 
-                    if dist < maxDist
-                        if newgene(i+1) == gaendnode 
+                    if dist < maxDist                   
+                        if newgene(i+1) == gaendnode    %stop searching when node found
                             break
                         end
                     else 
-                        obj.valid = 0;
-                        break
+                        obj.valid = 0;                  %returns invalid run if too short
+                        continue
                     end
                 end
 
                 if obj.valid == 1
                     obj.endDist = dist;
-                    obj.fitness = dist - (obj.visited * 5); % improves fitness by 5 for each location visited
+                    obj.fitness = dist - (obj.visited * 500); % improves fitness by 5 for each location visited
                 end
             end
         end

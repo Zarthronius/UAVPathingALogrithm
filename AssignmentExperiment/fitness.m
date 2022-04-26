@@ -16,8 +16,9 @@ function [fittestInd,total] = fitness(pop,data,gastart,gaendnode)
         if pop.individuals(i).valid == 1
             if (pop.individuals(i).fitness < fittestInd.fitness)
                fittestInd = pop.individuals(i).copy();
+               fittestInd.gene = fittestInd.gene;
             end
-        total = total + pop.individuals(i).fitness; 
         end
+        total = total + pop.individuals(i).fitness;
     end
 end
