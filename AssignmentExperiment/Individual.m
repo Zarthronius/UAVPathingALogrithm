@@ -28,7 +28,7 @@ classdef Individual < handle
                 newgene = [gastart(1,1) obj.gene];
 
                 for i = 1:size(newgene,2)-1
-                    dist = dist + distance(newdata,newgene(i),newgene(i+1));
+                    dist = dist + distance(newdata,newgene(i),newgene(i+1)) - 3; %%%%
                     if newgene(i) == gaendnode
                         break
                     end
