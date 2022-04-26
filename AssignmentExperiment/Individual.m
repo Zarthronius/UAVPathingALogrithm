@@ -20,15 +20,16 @@ classdef Individual < handle
                 obj.fitness = fit;
             end
         end
-        function obj = check(obj,data)               % allows fitness 
+        function obj = check(obj,data,gastart,gaend)               % allows fitness 
             if nargin ~= 0 
                 dist = 0;                             % to be applied
+                newdata = [gastart; data; gaend];   % ammend data to have start and end nodes
                 
-                for i = 1:size(obj.gene,2)-1
-                    dist = dist + distance(data,obj.gene(i),obj.gene(i+1));
-                    if obj.gene(i) == 10
-                        break
-                    end
+                newgene = [gastart(1,1) obj.gene gaend(1,1)]; % ammend gene to have start and end nodes
+
+
+                for i = 1:size(newgene,2)-1
+                    dist = dist + distance(newdata,newgene(i),newgene(i+1));
                 end
                 
                 obj.fitness = dist;
