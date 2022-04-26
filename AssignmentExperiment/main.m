@@ -81,13 +81,7 @@ exprun = toc;
 fprintf("EXCUSION TIME: %fs\n", exprun);
 fprintf("TOTAL TIME: %fs\n", build+exprun);
 fprintf("====================================================\n");
-if experiment.success
-    fprintf("SUCCESSFUL RUN!\n");
-    fprintf("TARGET FOUND IN EPOC:%d\n",experiment.resultEpoc);
-else
-    fprintf("BEST ANSWER ONLY! (EPOC:%d)\n",experiment.bestEpoc);
 
-     
     %% removes excess nodes after path and gets coordinates for mapping
     genelength = length(experiment.bestInd.gene);
     result = zeros(genelength,3);
@@ -107,9 +101,13 @@ else
     result(row+1:end, :) = [ ]; %
     resultgene(1,:) = result(:,1); %
 
-
-    fprintf("[%s]%s",num2str(experiment.bestInd.fitness),evalc('disp(resultgene)'));
+if experiment.success
+    fprintf("SUCCESSFUL RUN!\n");
+    fprintf("TARGET FOUND IN EPOC: %d\n",experiment.resultEpoc);
+else
+    fprintf("BEST ANSWER ONLY! (EPOC: %d)\n",experiment.bestEpoc);
 end
+fprintf("[%s]%s",num2str(experiment.bestInd.fitness),evalc('disp(resultgene)'));
 fprintf("====================================================\n");
 
 

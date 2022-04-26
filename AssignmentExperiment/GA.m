@@ -53,7 +53,8 @@ classdef GA < handle
        end
        function obj = execute(obj)
           for i = 1:obj.EPOC
-             if obj.population.complete()
+              
+             if obj.population.complete(i,obj.bestEpoc)
                 obj.resultEpoc = i;
                 obj.success = 1;
                 return
