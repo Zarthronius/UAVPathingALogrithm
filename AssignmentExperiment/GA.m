@@ -28,10 +28,11 @@ classdef GA < handle
         bestEpoc = 0;
         population = [];
         resultEpoc = 0;
+        GASTART;
         stats;
     end
     methods
-       function obj = GA(ps,mr,data,epoc,elite,logging)
+        function obj = GA(ps,mr,data,epoc,elite,logging,gastart)
           if nargin ~= 0
               obj.POPULATIONSIZE=ps;
               obj.MUTATIONRATE=mr;
@@ -39,8 +40,9 @@ classdef GA < handle
               obj.EPOC=epoc;
               obj.ELITE=elite;
               obj.LOGGING=logging;
+              obj.GASTART = gastart; %
               obj.population = Population(data,obj.POPULATIONSIZE);
-              [obj.bestInd,~] = fitness(obj.population,data);
+              [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART);
               obj.success = 0;
               if (obj.LOGGING==1)
                   obj.population.dump(0,'w');
@@ -59,9 +61,10 @@ classdef GA < handle
             
             %TODO: something here to shuffle?
 
-             [bestResult,total] = fitness(temp1,obj.GADATA);           % CHECK FITNESS AND GET STATS
+             [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART);           % CHECK FITNESS AND GET STATS
              if bestResult.fitness < obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
+                 obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];
                  obj.bestEpoc = i;
              end
              obj.stats = [obj.stats; [double(i) double(bestResult.fitness) (double(total)/double(obj.POPULATIONSIZE))]]; % UPDATE STATS

@@ -7,25 +7,6 @@
 clc
 clear
 main
-% result = zeros(24,3);
-% %row = experiment.bestInd.gene(1,1);
-% %result(1,:) = GADATA(row,:);
-% 
-% for i = 1:24
-%     row = experiment.bestInd.gene(1,i); %value of 1st col in GADATA
-%     result(i,:) = GADATA(row,:);
-% end
-% 
-% x = result(:,2);  %x coords
-% y = result(:,3);  %y coords
-% 
-% for i = 1:size(result,1)
-%     if result(i,1) == 10
-%         row = i;
-%     end
-% end
-% 
-% result(row+1:end, :) = [ ]
 
 xpath = result(:,2);
 ypath = result(:,3);

@@ -23,30 +23,33 @@ VERSION="TSP2 0.02";
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 GAPOPULATIONSIZE=100;
 GAMUTATIONRATE=1.0;
-GADATA=[1  10  4; % Coldstream
-        2   3 17; % Carlisle
-        3  11 18; % Allenheads
-        4  18 23; % Darlington
-        5   7 12; % Morpeth
-        6  18  9; % Amble
-        7  29 23; % Whitby
-        8  17 25; % Catterick
-        9  13 15; % Corbridge
-        10 12 15; % Hexham
-        11  1 15; % Gretna
-        12  9  2; % Duns
-        13 20 15; % North Shields
-        14  5 26; % Kendal
-        15  9 23; % Kirkby Stephen
-        16 10 12; % Bellingham
-        17  7 11; % Kielder
-        18 14  6; % Chillingham
-        19 13 19; % Stanhope
-        20 24 22; % Guisborough
-        21 22 20; % Hartlepool
-        22 11 11; % Otterburn
-        23 17  5; % Seahouses
-        24  1 21]; % Keswick
+GASTART = [1 2 3];
+GADATA=[2  10  4; % Coldstream
+        3   3 17; % Carlisle
+        4  11 18; % Allenheads
+        5  18 23; % Darlington
+        6   7 12; % Morpeth
+        7  18  9; % Amble
+        8  29 23; % Whitby
+        9  17 25; % Catterick
+        10 13 15; % Corbridge
+        11 12 15; % Hexham
+        12 1 15; % Gretna
+        13 9  2; % Duns
+        14 20 15; % North Shields
+        15 5 26; % Kendal
+        16 9 23; % Kirkby Stephen
+        17 10 12; % Bellingham
+        18 7 11; % Kielder
+        19 14  6; % Chillingham
+        20 13 19; % Stanhope
+        21 24 22; % Guisborough
+        22 22 20; % Hartlepool
+        23 11 11; % Otterburn
+        24 17  5; % Seahouses
+        25  1 21]; % Keswick
+GAENDNODE = 10;
+GADATAFULL = [GASTART; GADATA]; %
 % remember n! possible answers
 GAEPOC=500;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,7 +72,7 @@ fprintf("MUTATION RATE = %f\n",GAMUTATIONRATE);
 fprintf("EPOC = %d\n",GAEPOC);
 fprintf("--------------------------------------------------------\n");
 tic
-experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING);
+experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART);
 build = toc;
 fprintf("BUILD TIME: %fs\n", build);
 tic
@@ -85,25 +88,27 @@ else
     fprintf("BEST ANSWER ONLY! (EPOC:%d)\n",experiment.bestEpoc);
 
      
-    %% removes excess nodes after path and gets coordinates for maping
+    %% removes excess nodes after path and gets coordinates for mapping
     genelength = length(experiment.bestInd.gene);
     result = zeros(genelength,3);
     for i = 1:genelength
         row = experiment.bestInd.gene(1,i); %value of 1st col in GADATA
-        result(i,:) = GADATA(row,:);
+        result(i,:) = GADATAFULL(row,:);
     end    
-    xall = GADATA(:,2);  %x coords
-    yall = GADATA(:,3);  %y coords
+    xall = GADATAFULL(:,2);  %x coords
+    yall = GADATAFULL(:,3);  %y coords
     
     for i = 1:size(result,1)
-        if result(i,1) == 10
+        if result(i,1) == GAENDNODE
             row = i;
         end
     end
 
-    result(row+1:end, :) = [ ];
+    result(row+1:end, :) = [ ]; %
+    resultgene(1,:) = result(:,1); %
 
-    fprintf("[%s]%s",num2str(experiment.bestInd.fitness),evalc('disp(transpose(result(:,1)))'));
+
+    fprintf("[%s]%s",num2str(experiment.bestInd.fitness),evalc('disp(resultgene)'));
 end
 fprintf("====================================================\n");
 
