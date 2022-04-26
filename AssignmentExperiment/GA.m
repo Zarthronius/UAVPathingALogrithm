@@ -30,10 +30,12 @@ classdef GA < handle
         resultEpoc = 0;
         GASTART; %
         GAENDNODE = 0; %
+        MAXDIST = 0%
+        MINDIST = 0 %
         stats;
     end
     methods
-        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode) %
+        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist) %
           if nargin ~= 0
               obj.POPULATIONSIZE=ps;
               obj.MUTATIONRATE=mr;
@@ -43,8 +45,10 @@ classdef GA < handle
               obj.LOGGING=logging;
               obj.GASTART = gastart; %
               obj.GAENDNODE = gaendnode; %
+              obj.MAXDIST = maxdist;
+              obj.MINDIST = mindist;
               obj.population = Population(data,obj.POPULATIONSIZE);
-              [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE);
+              [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);
               obj.success = 0;
               if (obj.LOGGING==1)
                   obj.population.dump(0,'w');
@@ -64,7 +68,7 @@ classdef GA < handle
             
             %TODO: something here to shuffle?
 
-             [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE);           % CHECK FITNESS AND GET STATS
+             [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);           % CHECK FITNESS AND GET STATS
              if bestResult.fitness < obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
                  obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];

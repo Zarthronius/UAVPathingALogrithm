@@ -31,17 +31,16 @@ classdef Individual < handle
             end
         end
         %% 
-        function obj = check(obj,data,gastart,gaendnode)               % allows fitness 
+        function obj = check(obj,data,gastart,gaendnode,maxDist,minDist)               % allows fitness 
             if nargin ~= 0
                 obj.valid = 1;
                 obj.visited = 0;
                 dist = 0;
-                maxDist = 50; %maximum distance path can be             % to be applied
+                                                                            % to be applied
                 
                 newdata = [gastart; data];
                 newgene = [gastart(1,1) obj.gene];
 
-                minDist = distance(newdata,1,gaendnode); %should only be calculated once for whole program, needs moving
                 assert(maxDist > minDist, 'maximum distance must be larger than distance between start and end node') %ensure journey is possible
 
                 for i = 1:size(newgene,2)-1
@@ -60,7 +59,7 @@ classdef Individual < handle
 
                 if obj.valid == 1
                     obj.endDist = dist;
-                    obj.fitness = dist - (obj.visited * 500); % improves fitness by 5 for each location visited
+                    obj.fitness = dist - (obj.visited * 10); % improves fitness by 10 for each location visited BREAKS IF TOO LOW
                 end
             end
         end

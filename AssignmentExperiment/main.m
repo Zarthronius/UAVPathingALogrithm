@@ -48,10 +48,13 @@ GADATA=[2  10  4; % Coldstream
         23 11 11; % Otterburn
         24 17  5; % Seahouses
         25  1 21]; % Keswick
-GAENDNODE = 21;
+GAENDNODE = 5;
 GADATAFULL = [GASTART; GADATA]; %
+MAXDIST = 30; %
+MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 % remember n! possible answers
 GAEPOC=500;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ELITE=1; % 0 = FALSE 1 = TRUE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +75,7 @@ fprintf("MUTATION RATE = %f\n",GAMUTATIONRATE);
 fprintf("EPOC = %d\n",GAEPOC);
 fprintf("--------------------------------------------------------\n");
 tic
-experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART,GAENDNODE);
+experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART,GAENDNODE,MAXDIST,MINDIST);
 build = toc;
 fprintf("BUILD TIME: %fs\n", build);
 tic
