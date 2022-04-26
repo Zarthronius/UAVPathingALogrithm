@@ -59,7 +59,7 @@ classdef Individual < handle
 
                 if obj.valid == 1
                     obj.endDist = dist;
-                    obj.fitness = dist - (obj.visited * 10); % improves fitness by 10 for each location visited BREAKS IF TOO LOW
+                    obj.fitness = dist - (obj.visited * 20); % improves fitness by 20 for each location visited BREAKS IF TOO LOW
                 end
             end
         end
