@@ -20,7 +20,7 @@ classdef Individual < handle
                 obj.fitness = fit;
             end
         end
-        function obj = check(obj,data,gastart)               % allows fitness 
+        function obj = check(obj,data,gastart,gaendnode)               % allows fitness 
             if nargin ~= 0 
                 dist = 0;                             % to be applied
                 
@@ -29,7 +29,7 @@ classdef Individual < handle
 
                 for i = 1:size(newgene,2)-1
                     dist = dist + distance(newdata,newgene(i),newgene(i+1));
-                    if newgene(i) == 10
+                    if newgene(i) == gaendnode
                         break
                     end
                 end

@@ -48,7 +48,7 @@ GADATA=[2  10  4; % Coldstream
         23 11 11; % Otterburn
         24 17  5; % Seahouses
         25  1 21]; % Keswick
-GAENDNODE = 10;
+GAENDNODE = 21;
 GADATAFULL = [GASTART; GADATA]; %
 % remember n! possible answers
 GAEPOC=500;
@@ -72,7 +72,7 @@ fprintf("MUTATION RATE = %f\n",GAMUTATIONRATE);
 fprintf("EPOC = %d\n",GAEPOC);
 fprintf("--------------------------------------------------------\n");
 tic
-experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART);
+experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART,GAENDNODE);
 build = toc;
 fprintf("BUILD TIME: %fs\n", build);
 tic
