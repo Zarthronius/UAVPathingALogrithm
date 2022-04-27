@@ -32,10 +32,11 @@ classdef GA < handle
         GAENDNODE = 0; %
         MAXDIST = 0%
         MINDIST = 0 %
+        GANODEWEIGHT
         stats;
     end
     methods
-        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist) %
+        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist,nodeWeight) %
           if nargin ~= 0
               obj.POPULATIONSIZE=ps;
               obj.MUTATIONRATE=mr;
@@ -45,10 +46,11 @@ classdef GA < handle
               obj.LOGGING=logging;
               obj.GASTART = gastart; %
               obj.GAENDNODE = gaendnode; %
+              obj.GANODEWEIGHT = nodeWeight;
               obj.MAXDIST = maxdist;
               obj.MINDIST = mindist;
               obj.population = Population(data,obj.POPULATIONSIZE);
-              [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);
+              [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST,obj.GANODEWEIGHT);
               obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene]; %
               obj.success = 0;
               if (obj.LOGGING==1)
@@ -66,7 +68,7 @@ classdef GA < handle
              end
              temp1 = selection(obj.GADATA,obj.population,obj.ELITE);   % USE ELITE OR RANDOM
              mutate(temp1,obj.MUTATIONRATE);
-             [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);           % CHECK FITNESS AND GET STATS          
+             [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST,obj.GANODEWEIGHT);           % CHECK FITNESS AND GET STATS          
              if bestResult.fitness > obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
                  obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];
