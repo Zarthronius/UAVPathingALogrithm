@@ -6,8 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 clear
-main
+gmain
 
+figure("Name","Best Path Mapped");
 xpath = result(:,2);
 ypath = result(:,3);
 

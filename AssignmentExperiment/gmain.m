@@ -17,6 +17,7 @@ else
     status = sprintf('BEST FIT : [%4d] %s',experiment.bestInd.fitness,evalc('disp(experiment.bestInd.gene)'));
 end
 
+figure("Name","Fitness Graph");
 plot(x,best,"DisplayName","Best Fitness");
 hold on
 plot(x,avg,"DisplayName","Average Fitness");
