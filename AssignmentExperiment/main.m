@@ -48,9 +48,9 @@ GADATA=[2  10  4; % Coldstream
         23 11 11; % Otterburn
         24 17  5; % Seahouses
         25  1 21]; % Keswick
-GAENDNODE = 5;
+GAENDNODE = 8;
 GADATAFULL = [GASTART; GADATA]; %
-MAXDIST = 30; %
+MAXDIST = 100; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 % remember n! possible answers
 GAEPOC=500;

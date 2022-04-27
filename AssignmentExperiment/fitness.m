@@ -6,17 +6,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [fittestInd,total] = fitness(pop,data,gastart,gaendnode,maxdist,mindist)
-    fittestInd = Individual([],realmax); % Create temp Individual with a max value fitness
-                                         % value. This can be avoided by using an
-                                         % inverse fitness function so we could sort decending.
-                                         % but it's fine for now!
+    fittestInd = Individual([],0); % Create temp Individual with a 0 value 
+                                   % fitness
     total = 0;
     for i = 1:size(pop.individuals,1)
         pop.individuals(i).check(data,gastart,gaendnode,maxdist,mindist);
         if pop.individuals(i).valid == 1
-            if (pop.individuals(i).fitness < fittestInd.fitness)
+            if (pop.individuals(i).fitness > fittestInd.fitness)
                fittestInd = pop.individuals(i).copy();
-               fittestInd.gene = fittestInd.gene;
             end
         end
         total = total + pop.individuals(i).fitness;

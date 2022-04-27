@@ -69,12 +69,12 @@ classdef GA < handle
             %TODO: something here to shuffle?
 
              [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);           % CHECK FITNESS AND GET STATS
-             if bestResult.fitness < obj.bestInd.fitness
+             if bestResult.fitness > obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
                  obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];
                  obj.bestEpoc = i;
              end
-             obj.stats = [obj.stats; [double(i) double(bestResult.fitness) (double(total)/double(obj.POPULATIONSIZE))]]; % UPDATE STATS
+             obj.stats = [obj.stats; [double(i) double(obj.bestInd.fitness) (double(total)/double(obj.POPULATIONSIZE))]]; % UPDATE STATS
              obj.population = temp1;
              if (obj.LOGGING==1)
                  obj.population.dump(i,'a');
