@@ -32,11 +32,12 @@ classdef GA < handle
         GAENDNODE = 0; %
         MAXDIST = 0%
         MINDIST = 0 %
-        GANODEWEIGHT
+        GANODEWEIGHT = 0
+        EPOCRANGE = 0
         stats;
     end
     methods
-        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist,nodeWeight) %
+        function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist,nodeWeight,epocrange) %
           if nargin ~= 0
               obj.POPULATIONSIZE=ps;
               obj.MUTATIONRATE=mr;
@@ -49,9 +50,10 @@ classdef GA < handle
               obj.GANODEWEIGHT = nodeWeight;
               obj.MAXDIST = maxdist;
               obj.MINDIST = mindist;
+              obj.EPOCRANGE = epocrange;
               obj.population = Population(data,obj.POPULATIONSIZE);
               [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST,obj.GANODEWEIGHT);
-              obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene]; %
+              obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene]; % Ensure gene begins with start node
               obj.success = 0;
               if (obj.LOGGING==1)
                   obj.population.dump(0,'w');
@@ -61,7 +63,7 @@ classdef GA < handle
        function obj = execute(obj)
           for i = 1:obj.EPOC
               
-             if obj.population.complete(i,obj.bestEpoc)
+             if obj.population.complete(i,obj.bestEpoc,obj.EPOCRANGE)
                 obj.resultEpoc = i;
                 obj.success = 1;
                 return

@@ -21,7 +21,7 @@ VERSION="TSP2 0.02";
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ADDED POPULATION LOGGING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-GAPOPULATIONSIZE=500;
+GAPOPULATIONSIZE=250;
 GAMUTATIONRATE=1.0;
 GASTART = [1 2 3];
 GADATA=[2  10  4; % Coldstream
@@ -48,14 +48,15 @@ GADATA=[2  10  4; % Coldstream
         23 11 11; % Otterburn
         24 17  5; % Seahouses
         25  1 21]; % Keswick
-GAENDNODE = 8;%
+GAENDNODE = 8; %
 GADATAFULL = [GASTART; GADATA]; %
 MAXDIST = 200; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 GANODEWEIGHT = 0.001;%
-% remember n! possible answers
-GAEPOC=5000;
 
+% remember n! possible answers
+GAEPOC=1000;
+GAEPOCRANGE = 0;                % stops after no. epocs with no improvement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ELITE=1; % 0 = FALSE 1 = TRUE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,7 +77,7 @@ fprintf("MUTATION RATE = %f\n",GAMUTATIONRATE);
 fprintf("EPOC = %d\n",GAEPOC);
 fprintf("--------------------------------------------------------\n");
 tic
-experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART,GAENDNODE,MAXDIST,MINDIST,GANODEWEIGHT);
+experiment = GA(GAPOPULATIONSIZE,GAMUTATIONRATE,GADATA,GAEPOC,ELITE,LOGGING,GASTART,GAENDNODE,MAXDIST,MINDIST,GANODEWEIGHT,GAEPOCRANGE);
 build = toc;
 fprintf("BUILD TIME: %fs\n", build);
 tic

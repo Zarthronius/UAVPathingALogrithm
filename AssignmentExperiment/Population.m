@@ -28,14 +28,13 @@ classdef Population < handle
                 obj.individuals(i).print();
             end
         end
-        function result = complete(obj, currentEpoc, bestEpoc)
+        function result = complete(obj, currentEpoc, bestEpoc, epocRange)
             % No exit condition specified. i.e. run to the end of the epocs!
             % There should really be a check that the distance has stabalised.
             result=0;
-            
-            if (currentEpoc - bestEpoc) > 200  %% If no new best solution
-                result = 1;                    %% for 250 epocs
-            end                                %% end experiment
+            if (currentEpoc - bestEpoc) == epocRange  %% If no new best solution
+            result = 1;                               %% for x epocs
+            end                                       %% end experiment
         end
         function dump(obj,data,mode)
             fileID = fopen('experiment.txt',mode);

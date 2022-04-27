@@ -2,7 +2,7 @@
 % AUTHOR: ZAC ALLEN
 % DATE: 23/04/2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PLOT SAMPLE PROGRAM
+% PLOT GMAIN AND PATH PROGRAM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 clear
