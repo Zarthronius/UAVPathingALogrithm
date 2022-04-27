@@ -37,7 +37,6 @@ classdef Individual < handle
                 obj.visited = 0;
                 dist = 0;
                                                                             % to be applied
-                
                 newdata = [gastart; data];
                 newgene = [gastart(1,1) obj.gene];
 
@@ -59,7 +58,7 @@ classdef Individual < handle
 
                 if obj.valid == 1
                     obj.endDist = dist;                           % fitness usually in the area of 0.035s
-                    obj.fitness = 1/dist + (obj.visited * 0.01); % improves fitness by 0.001 for each location visited
+                    obj.fitness = 1/dist + (obj.visited * 0.0025); % improves fitness by 0.001 for each location visited
                 end
             end
         end

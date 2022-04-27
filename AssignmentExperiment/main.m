@@ -21,7 +21,7 @@ VERSION="TSP2 0.02";
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ADDED POPULATION LOGGING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-GAPOPULATIONSIZE=100;
+GAPOPULATIONSIZE=5;
 GAMUTATIONRATE=1.0;
 GASTART = [1 2 3];
 GADATA=[2  10  4; % Coldstream
@@ -50,10 +50,10 @@ GADATA=[2  10  4; % Coldstream
         25  1 21]; % Keswick
 GAENDNODE = 8;
 GADATAFULL = [GASTART; GADATA]; %
-MAXDIST = 100; %
+MAXDIST = 200; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 % remember n! possible answers
-GAEPOC=500;
+GAEPOC=5000;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ELITE=1; % 0 = FALSE 1 = TRUE

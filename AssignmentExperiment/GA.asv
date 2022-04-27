@@ -49,7 +49,6 @@ classdef GA < handle
               obj.MINDIST = mindist;
               obj.population = Population(data,obj.POPULATIONSIZE);
               [obj.bestInd,~] = fitness(obj.population,data,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);
-              obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene]; %
               obj.success = 0;
               if (obj.LOGGING==1)
                   obj.population.dump(0,'w');
@@ -66,10 +65,14 @@ classdef GA < handle
              end
              temp1 = selection(obj.GADATA,obj.population,obj.ELITE);   % USE ELITE OR RANDOM
              mutate(temp1,obj.MUTATIONRATE);
+            
+            %TODO: something here to shuffle?
+
              [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST);           % CHECK FITNESS AND GET STATS          
              if bestResult.fitness > obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
                  obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];
+                 obj.bestInd.gene
                  obj.bestEpoc = i;
              end
              obj.stats = [obj.stats; [double(i) double(obj.bestInd.fitness) (double(total)/double(obj.POPULATIONSIZE))]]; % UPDATE STATS

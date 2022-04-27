@@ -36,10 +36,6 @@ classdef Population < handle
             if (currentEpoc - bestEpoc) > 200  %% If no new best solution
                 result = 1;                    %% for 250 epocs
             end                                %% end experiment
-
-
-
-
         end
         function dump(obj,data,mode)
             fileID = fopen('experiment.txt',mode);
