@@ -62,11 +62,11 @@ classdef Individual < handle
         %%
         function child = crossing(obj,val)              % Simple LOX crossover
             child = Individual();                       % create a child
-            cross = cast(size(obj.gene,2)/2,'uint64');        % get mid point
-            child.gene = obj.gene(1:cross);
+            cross = cast(size(obj.gene,2)/2,'uint64');  % get mid point
+            child.gene = obj.gene(1:cross);             % obj genes added until crossover point
             for i = 1:size(val.gene,2)
-                if ~ismember(val.gene(i),child.gene)
-                    child.gene = [child.gene val.gene(i)];            
+                if ~ismember(val.gene(i),child.gene)        % if gene not in child
+                    child.gene = [child.gene val.gene(i)];  % add gene to child               
                 end
             end
         end
