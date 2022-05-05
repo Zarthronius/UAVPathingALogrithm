@@ -1,5 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AUTHOR: DR N ELIOT
+% EDITED BY: ZAC ALLEN
 % DATE: 15/10/2021
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Individiual Class
