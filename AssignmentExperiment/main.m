@@ -24,33 +24,10 @@ VERSION="TSP2 0.02";
 GAPOPULATIONSIZE=250;
 GAMUTATIONRATE=1.0;
 GASTART = [1 2 3];
-GADATA=[2  10  4; % Coldstream
-        3   3 17; % Carlisle
-        4  11 18; % Allenheads
-        5  18 23; % Darlington
-        6   7 12; % Morpeth
-        7  18  9; % Amble
-        8  29 23; % Whitby
-        9  17 25; % Catterick
-        10 13 15; % Corbridge
-        11 12 15; % Hexham
-        12 1 15; % Gretna
-        13 9  2; % Duns
-        14 20 15; % North Shields
-        15 5 26; % Kendal
-        16 9 23; % Kirkby Stephen
-        17 10 12; % Bellingham
-        18 7 11; % Kielder
-        19 14  6; % Chillingham
-        20 13 19; % Stanhope
-        21 24 22; % Guisborough
-        22 22 20; % Hartlepool
-        23 11 11; % Otterburn
-        24 17  5; % Seahouses
-        25  1 21]; % Keswick
+GADATA = readmatrix('coords');
 GAENDNODE = 8; %
 GADATAFULL = [GASTART; GADATA]; %
-MAXDIST = 200; %
+MAXDIST = 100; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 GANODEWEIGHT = 0.001;%
 

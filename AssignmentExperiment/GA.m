@@ -37,6 +37,7 @@ classdef GA < handle
         stats;
     end
     methods
+        % Start GA
         function obj = GA(ps,mr,data,epoc,elite,logging,gastart,gaendnode,maxdist,mindist,nodeWeight,epocrange) %
           if nargin ~= 0
               obj.POPULATIONSIZE=ps;
@@ -60,22 +61,30 @@ classdef GA < handle
               end
           end
        end
+       % Execute objection
        function obj = execute(obj)
           for i = 1:obj.EPOC
               
+             % If no new best fitness for no. of epocs, return best result
              if obj.population.complete(i,obj.bestEpoc,obj.EPOCRANGE)
                 obj.resultEpoc = i;
                 obj.success = 1;
                 return
              end
+             % Use elitism or full randomness and perform LOX crossover
              temp1 = selection(obj.GADATA,obj.population,obj.ELITE);   % USE ELITE OR RANDOM
+             % Mutate children using mutation rate
              mutate(temp1,obj.MUTATIONRATE);
+             % Calculate fitness using path distance and node weighting
              [bestResult,total] = fitness(temp1,obj.GADATA,obj.GASTART,obj.GAENDNODE,obj.MAXDIST,obj.MINDIST,obj.GANODEWEIGHT);           % CHECK FITNESS AND GET STATS          
+             % CHECK FITNESS AND GET STATS          
+             % If new best result, replace best result
              if bestResult.fitness > obj.bestInd.fitness
                  obj.bestInd = bestResult.copy();
                  obj.bestInd.gene = [obj.GASTART(1,1) obj.bestInd.gene];
                  obj.bestEpoc = i;
              end
+             % Return stats and increase current epoc
              obj.stats = [obj.stats; [double(i) double(obj.bestInd.fitness) (double(total)/double(obj.POPULATIONSIZE))]]; % UPDATE STATS
              obj.population = temp1;
              if (obj.LOGGING==1)
