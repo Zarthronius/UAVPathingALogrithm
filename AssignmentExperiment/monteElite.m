@@ -13,15 +13,15 @@ GAPOPULATIONSIZE=100;
 GAMUTATIONRATE=0.1;
 GASTART = [1 2 3];
 GADATA = readmatrix('coords');
-GAENDNODE = 8; %
+GAENDNODE = 18; %
 GADATAFULL = [GASTART; GADATA]; %
-MAXDIST = 300; %
+MAXDIST = 100; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 GANODEWEIGHT = 0.01;%
 
     
 % remember n! possible answers
-GAEPOC=500;
+GAEPOC=100;
 GAEPOCRANGE = 0;                % stops after no. epocs with no improvement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ELITE=[0,1]; % 0 = FALSE 1 = TRUE
@@ -66,8 +66,9 @@ end
 legend
 %xlim([1 experiment.resultEpoc+1]);
 xlim([1 EXECUTIONS]);
-xlabel("EPOC");
+xlabel("Executions");
 ylabel("Fitness");
 grid
+title('Monte Carlo Elitism Comparison');
 % title('Performance Characteristic of GA', ['STATUS: ' status ' BUILD: ' num2str(build) 's EXECUTION: ' num2str(exprun) 's EPOCS: ' num2str(experiment.bestEpoc)]);
 hold off

@@ -22,19 +22,28 @@ VERSION="TSP2 0.02";
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ADDED POPULATION LOGGING
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-GAPOPULATIONSIZE=250;
+% Population Size
+GAPOPULATIONSIZE=500;
+% Mutation Rate
 GAMUTATIONRATE=1.0;
+% Start node
 GASTART = [1 2 3];
+% Matrix of nodes
 GADATA = readmatrix('coords');
+% End node ID
 GAENDNODE = 8; %
+% Appends start node to the rest of the data
 GADATAFULL = [GASTART; GADATA]; %
+% Maximum and minimum possible flight distances
 MAXDIST = 100; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
 GANODEWEIGHT = 0.001;%
 
 % remember n! possible answers
-GAEPOC=1000;
-GAEPOCRANGE = 0;                % stops after no. epocs with no improvement
+% Number of epocs
+GAEPOC=500;
+ % Stops after number of epocs with no improvement
+GAEPOCRANGE = 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ELITE=1; % 0 = FALSE 1 = TRUE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

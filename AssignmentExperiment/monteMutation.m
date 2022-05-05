@@ -13,7 +13,7 @@ GAPOPULATIONSIZE=100;
 GAMUTATIONRATE=[0.1,0.2,0.3,0.5,1.0];
 GASTART = [1 2 3];
 GADATA = readmatrix('coords');
-GAENDNODE = 8; %
+GAENDNODE = 18; %
 GADATAFULL = [GASTART; GADATA]; %
 MAXDIST = 300; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
@@ -28,7 +28,7 @@ ELITE=1; % 0 = FALSE 1 = TRUE
 LOGGING=0; % 0 = FALSE 1 = TRUE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-EXECUTIONS = 10;
+EXECUTIONS = 50;
 format compact
 
 for i = 1:length(GAMUTATIONRATE)                                               % for each population size
@@ -65,8 +65,10 @@ end
 legend
 %xlim([1 experiment.resultEpoc+1]);
 xlim([1 EXECUTIONS]);
-xlabel("EPOC");
+xlabel("Executions");
+
 ylabel("Fitness");
 grid
+title('Monte Carlo Mutation Rate Comparison');
 % title('Performance Characteristic of GA', ['STATUS: ' status ' BUILD: ' num2str(build) 's EXECUTION: ' num2str(exprun) 's EPOCS: ' num2str(experiment.bestEpoc)]);
 hold off
