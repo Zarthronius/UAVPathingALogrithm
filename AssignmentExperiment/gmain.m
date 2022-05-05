@@ -27,5 +27,5 @@ legend
 xlabel("EPOC");
 ylabel("Fitness");
 grid
-title('Performance Characteristic of GA', ['STATUS: ' status ' BUILD: ' num2str(build) 's EXECUTION: ' num2str(exprun) 's EPOCS: ' num2str(experiment.bestEpoc)]);
+title('Performance Characteristic of GA', ['MINPATH' num2str(MINDIST)  ' MAX PATH' num2str(MAXDIST) ' NODE WEIGHT: ' num2str(GANODEWEIGHT) '\n STATUS: ' status ' BUILD: ' num2str(build) 's EXECUTION: ' num2str(exprun) 's EPOCS: ' num2str(experiment.bestEpoc)]);
 hold off

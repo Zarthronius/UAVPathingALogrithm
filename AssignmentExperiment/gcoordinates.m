@@ -9,18 +9,21 @@ clear
 gmain
 
 figure("Name","Best Path Mapped");
+% Path coordinates
 xpath = result(:,2);
 ypath = result(:,3);
 
 format compact
+% Plot Nodes
 scatter(xall,yall,"DisplayName", "Nodes");
 hold on
-plot(xpath,ypath,"DisplayName","Path Taken"); %can use plot or scatter
+% Path plot
+plot(xpath,ypath,"DisplayName","Path Taken"); 
 legend
-%xlim([0 15]);   %both axis between 0 15
-%ylim([0 15]);   
-xlabel("x");    %axis labels
+% Axis labels
+xlabel("x");    
 ylabel("y");
 grid
-title("GA best path taken"); %graph title
+% Graph title
+title("GA best path taken", ["MINPATH" num2str(MINDIST) " MAX PATH " num2str(MAXDIST) " NODE WEIGHT: " num2str(GANODEWEIGHT)]); 
 hold off

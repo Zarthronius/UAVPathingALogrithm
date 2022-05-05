@@ -31,13 +31,13 @@ GASTART = [1 2 3];
 % Matrix of nodes
 GADATA = readmatrix('coords');
 % End node ID
-GAENDNODE = 8; %
+GAENDNODE = 18; %
 % Appends start node to the rest of the data
 GADATAFULL = [GASTART; GADATA]; %
 % Maximum and minimum possible flight distances
-MAXDIST = 100; %
+MAXDIST = 150; %
 MINDIST = distance(GADATAFULL,1,GAENDNODE);%
-GANODEWEIGHT = 0.001;%
+GANODEWEIGHT = 0.01;%
 
 % remember n! possible answers
 % Number of epocs
