@@ -1,5 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% AUTHOR: ZAC ALLEN
+% AUTHOR: ZDR N ELIOT
+% EDITED BY: W20016567
 % DATE: 21/04/2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLOT SAMPLE PROGRAM
